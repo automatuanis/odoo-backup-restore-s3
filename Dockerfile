@@ -7,9 +7,11 @@ RUN apk update \
     && apk add curl \
     && curl -L --insecure https://github.com/odise/go-cron/releases/download/v0.0.6/go-cron-linux.gz | zcat > /usr/local/bin/go-cron \
     && chmod u+x /usr/local/bin/go-cron \
+    && apk add -U tzdata \
     && apk del curl \
     && apk del py-pip \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* \
+    && cp /usr/share/zoneinfo/America/Costa_Rica /etc/localtime
 
 ENV ODOO_HOST 'odoo'
 ENV ODOO_PORT '8069'
